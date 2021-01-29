@@ -1,0 +1,18 @@
+Source code on the course uses spring boot 2.2.x.
+
+
+# Spring Boot 2.3.x Notes
+Start from Spring Boot 2.3.0, Spring validation starter no longer includes validator.
+If you intend to use Spring Boot 2.3.x, add the following dependency on build.gradle on project microservice-pattern-two and microservice-pattern-three
+
+    implementation 'org.springframework.boot:spring-boot-starter-validation'
+
+
+# Newest is not always best
+There are many components involved on spring boot microservices.
+The course uses compatible libraries and it works as you seen on videos.
+
+Based on my personal experience, some features on newest version might not always works as expected (maybe due to bug on the libraries).
+On my professional experience, I ever encounter problem connecting to service discovery (consul) because library version update.
+
+Always test your application!

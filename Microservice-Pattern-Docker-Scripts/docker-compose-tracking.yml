@@ -1,0 +1,43 @@
+version: "3.7"
+
+networks:
+  microservice-net:
+    name: microservice-net
+    driver: bridge
+
+services:
+  elasticsearch:
+    image: elasticsearch:7.6.0
+    container_name: elasticsearch
+    restart: unless-stopped
+    networks:
+      - microservice-net
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    environment:
+      discovery.type: single-node
+  kibana:
+    image: kibana:7.6.0
+    container_name: kibana
+    restart: unless-stopped
+    networks:
+      - microservice-net
+    ports:
+      - "5601:5601"
+    depends_on:
+      - elasticsearch
+  logstash:
+    image: logstash:7.6.0
+    container_name: logstash
+    restart: unless-stopped
+    networks:
+      - microservice-net
+    ports:
+      - "5044:5044"
+      - "9600:9600"
+    depends_on:
+      - elasticsearch
+    volumes:
+    - ./elk/logstash/pipeline:/usr/share/logstash/pipeline:ro
+    - d:/development/logstash/api-composition.log:/usr/share/logstash/api-composition.log

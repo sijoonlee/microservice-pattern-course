@@ -1,0 +1,71 @@
+plugins {
+	id 'org.springframework.boot' version '2.2.5.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+	id 'java'
+}
+
+group = 'com.course.microservice'
+version = '1.0.0'
+sourceCompatibility = '13'
+
+configurations {
+	developmentOnly
+	runtimeClasspath {
+		extendsFrom developmentOnly
+	}
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs 'conf'
+  		}
+  	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+ext {
+	set('springCloudVersion', "Hoxton.SR1")
+	set('apacheCommonsLangVersion', "3.9")
+}
+
+dependencies {
+	// REST server (MVC)
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	// Declarative REST client with Feign
+	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'	
+	// Kafka
+	implementation 'org.springframework.kafka:spring-kafka'
+	// Consul service discovery
+	implementation 'org.springframework.cloud:spring-cloud-starter-consul-discovery'		
+	// Hystrix circuit breaker
+	implementation 'org.springframework.cloud:spring-cloud-starter-netflix-hystrix'
+	//JPA for database
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-data-rest'
+	runtimeOnly 'mysql:mysql-connector-java'
+	
+	// Shared libraries other than spring
+	implementation "org.apache.commons:commons-lang3:${apacheCommonsLangVersion}"
+	
+	// Hot reload (development only)
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+	testImplementation 'org.springframework.kafka:spring-kafka-test'
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}
+
+test {
+	useJUnitPlatform()
+}

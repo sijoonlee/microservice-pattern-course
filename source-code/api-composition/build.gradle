@@ -1,0 +1,71 @@
+plugins {
+	id 'org.springframework.boot' version '2.2.5.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+	id 'java'
+}
+
+group = 'com.course.microservice'
+version = '1.0.0'
+sourceCompatibility = '13'
+
+configurations {
+	developmentOnly
+	runtimeClasspath {
+		extendsFrom developmentOnly
+	}
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs 'conf'
+  		}
+  	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+ext {
+	set('springCloudVersion', "Hoxton.SR1")
+	set('caffeineVersion', "2.8.1")
+	set('micrometerElasticVersion', "1.3.3")
+	set('logstashEncoder', "6.3")
+	set('sentrySpringVersion', "1.7.30")
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.cloud:spring-cloud-starter-consul-discovery'
+	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'
+
+	// cache
+	implementation "com.github.ben-manes.caffeine:caffeine:${caffeineVersion}"
+
+	// application metric & log aggregation
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation "io.micrometer:micrometer-registry-elastic:${micrometerElasticVersion}"
+	implementation "net.logstash.logback:logstash-logback-encoder:${logstashEncoder}"
+
+	// distributed tracing
+	implementation 'org.springframework.cloud:spring-cloud-starter-zipkin'
+	
+	// exception tracking
+	implementation "io.sentry:sentry-spring:${sentrySpringVersion}"
+
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}
+
+test {
+	useJUnitPlatform()
+}

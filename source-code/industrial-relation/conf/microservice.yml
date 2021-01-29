@@ -1,0 +1,5 @@
+app:
+  api:
+    client:
+      payroll:
+        url: http://localhost:8883

@@ -1,0 +1,61 @@
+logging:
+  pattern:
+    console: "[Payroll Compensation] %clr(%d{HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:%5p}) %clr(---){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:%wEx}"
+  
+server:
+  port: 8883
+  
+spring:
+  main:
+    banner-mode: OFF
+  devtools:
+    restart:
+      additional-paths:
+      - conf/**
+  kafka:
+    listener:
+      missing-topics-fatal: false
+    producer:
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer        
+    consumer:
+      group-id: payroll-compensaction-cg
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring:
+          json:
+            trusted:
+              packages: "*"
+  cloud:
+    loadbalancer:
+      ribbon:
+        enabled: false
+    consul:
+      discovery:
+        prefer-ip-address: true
+        health-check-path: /ping
+  datasource:
+    url: "jdbc:mysql://localhost:3306/payroll_compensation"
+    username: user
+    password: userpassword
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: create
+  data:
+    rest:
+      base-path: /api
+      
+#  kafka:
+#    producer:
+#      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+#      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+#    consumer:
+#      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+#      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+#      group-id: industrial-relation-cg
+#      auto-offset-reset: earliest
+#      properties:
+#        spring:
+#          json:
+#            trusted:
+#              packages: "*"

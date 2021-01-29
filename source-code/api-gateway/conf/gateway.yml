@@ -1,0 +1,30 @@
+spring:
+  cloud:
+    gateway:
+      # disable / enable lookup to service discovery
+      # note : spring cloud gateway configuration for service discovery integration is still under active development
+      discovery:        
+        locator:
+          enabled: true
+      routes:
+        - id: employee-movement-route
+          uri: lb://employee-movement
+          predicates:
+          - Path=/em/**
+          filters:
+          - StripPrefix=1
+          - AddRequestHeader=X-Additional-Request-Header,Value-One
+          - AddRequestParameter=param_1,blue
+          - AddRequestParameter=param_2,red
+          - AddResponseHeader=X-Additional-Response-Header,Value-Two
+        - id: industrial-relation-route
+          uri: http://localhost:8882
+          predicates:
+          - Path=/ir/**
+          filters:
+          - StripPrefix=1
+          - AddRequestHeader=X-Additional-Request-Header,Value-Three
+          - AddRequestParameter=param_1,orange
+          - AddRequestParameter=param_2,green
+          - AddResponseHeader=X-Additional-Response-Header,Value-Four
+          

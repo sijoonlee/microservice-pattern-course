@@ -1,0 +1,43 @@
+logging:
+  pattern:
+    console: "[API Composition] %clr(%d{HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:%5p}) %clr(---){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:%wEx}"
+  
+server:
+  port: 9992
+  
+spring:
+  main:
+    banner-mode: OFF
+  devtools:
+    restart:
+      additional-paths:
+      - conf/**
+  cloud:
+    loadbalancer:
+      ribbon:
+        enabled: false
+    consul:
+      discovery:
+        prefer-ip-address: true
+        health-check-path: /ping
+  cache:
+    caffeine: 
+      spec: initialCapacity=20,maximumSize=200,expireAfterAccess=30m
+  zipkin:    base-url: http://localhost:9411
+
+feign:
+  hystrix:
+    enabled: false
+    
+management:
+  metrics:
+    export:
+      elastic:
+        enabled: true
+        step: 1m
+        host: http://localhost:9200
+        index: metrics-${spring.application.name}
+  endpoints:    web:      exposure:        include:
+        - info
+        - health        - loggers
+        - mappings    

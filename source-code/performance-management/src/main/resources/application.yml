@@ -1,0 +1,45 @@
+logging:
+  pattern:
+    console: "[Performance Management] %clr(%d{HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:%5p}) %clr(---){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:%wEx}"
+  
+server:
+  port: 8884
+  
+spring:
+  main:
+    banner-mode: OFF
+  devtools:
+    restart:
+      additional-paths:
+      - conf/**
+  kafka:
+    listener:      missing-topics-fatal: false
+    producer:
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer        
+    consumer:
+      group-id: performance-management-cg
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring:
+          json:
+            trusted:
+              packages: "*"
+  cloud:
+    loadbalancer:
+      ribbon:
+        enabled: false
+    consul:
+      discovery:
+        prefer-ip-address: true
+        health-check-path: /ping
+  datasource:
+    url: "jdbc:mysql://localhost:3306/performance_management"
+    username: user
+    password: userpassword
+  jpa:
+    show-sql: false
+    hibernate:
+      ddl-auto: create
+  data:
+    rest:
+      base-path: /api

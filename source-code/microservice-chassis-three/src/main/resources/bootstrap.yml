@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: microservice-chassis-three
+  cloud:
+    vault:
+      authentication: TOKEN
+      token: s.GRijx8qHkFxOfByiElYny9Nb
+      host: 127.0.0.1
+      port: 8200
+      scheme: http
+      kv:
+        enabled: true
+      database:
+        enabled: true
+        role: my-role

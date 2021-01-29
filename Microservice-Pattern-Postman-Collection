@@ -1,0 +1,3294 @@
+{
+	"info": {
+		"_postman_id": "e0ba8873-1de7-4ded-95b8-93b3c92e23b5",
+		"name": "Udemy - Microservice Pattern",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Chassis",
+			"item": [
+				{
+					"name": "External Configuration",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url-chassis}}/api/chassis/title",
+							"host": [
+								"{{base-url-chassis}}"
+							],
+							"path": [
+								"api",
+								"chassis",
+								"title"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Log",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url-chassis}}/api/chassis/log",
+							"host": [
+								"{{base-url-chassis}}"
+							],
+							"path": [
+								"api",
+								"chassis",
+								"log"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Exception Handling - Response",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "8f066e6e-d3cb-48c2-8fdd-5de9bc4eb188",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url-chassis}}/api/chassis/exception/response?param_one=microservice-string",
+							"host": [
+								"{{base-url-chassis}}"
+							],
+							"path": [
+								"api",
+								"chassis",
+								"exception",
+								"response"
+							],
+							"query": [
+								{
+									"key": "param_one",
+									"value": "microservice-string"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Exception Handling - Global",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7258325e-5357-4a21-86e3-395bacb894b6",
+								"exec": [
+									""
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url-chassis}}/api/chassis/exception/global?param_one=5224&param_two=abcde&use_file=false",
+							"host": [
+								"{{base-url-chassis}}"
+							],
+							"path": [
+								"api",
+								"chassis",
+								"exception",
+								"global"
+							],
+							"query": [
+								{
+									"key": "param_one",
+									"value": "5224"
+								},
+								{
+									"key": "param_two",
+									"value": "abcde"
+								},
+								{
+									"key": "use_file",
+									"value": "false"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Security - Check Header Email",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Developer-Email",
+								"type": "text",
+								"value": "peter.parker@avengers.com"
+							}
+						],
+						"url": {
+							"raw": "{{base-url-chassis}}/api/chassis/security/email",
+							"host": [
+								"{{base-url-chassis}}"
+							],
+							"path": [
+								"api",
+								"chassis",
+								"security",
+								"email"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Security - Basic Auth 1",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "password",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Developer-Email",
+								"type": "text",
+								"value": "peter.parker@avengers.com"
+							}
+						],
+						"url": {
+							"raw": "{{base-url-chassis}}/api/chassis/security/basic_auth/one",
+							"host": [
+								"{{base-url-chassis}}"
+							],
+							"path": [
+								"api",
+								"chassis",
+								"security",
+								"basic_auth",
+								"one"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Security - Basic Auth 2",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "spidey",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "spiderman",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "X-Developer-Email",
+								"type": "text",
+								"value": "peter.parker@avengers.com"
+							},
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"message\": \"Original message input\"\n}"
+						},
+						"url": {
+							"raw": "{{base-url-chassis}}/api/chassis/security/basic_auth/two",
+							"host": [
+								"{{base-url-chassis}}"
+							],
+							"path": [
+								"api",
+								"chassis",
+								"security",
+								"basic_auth",
+								"two"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Security - Cache Override",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "password",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "admin",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "X-Developer-Email",
+								"type": "text",
+								"value": "peter.parker@avengers.com"
+							}
+						],
+						"url": {
+							"raw": "{{base-url-chassis}}/api/chassis/security/cache/time",
+							"host": [
+								"{{base-url-chassis}}"
+							],
+							"path": [
+								"api",
+								"chassis",
+								"security",
+								"cache",
+								"time"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "c4a63ce7-3780-492a-94d3-e1bb60e03912",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "f9320682-3d64-449c-9901-7fb926037f1b",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test('Check status code', () => {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204])",
+							"})"
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Chassis Two",
+			"item": [
+				{
+					"name": "Create Employee",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"employee\": {\n        \"email\": \"john.doe@company.com\",\n        \"name\": \"John Doe\",\n        \"age\": 26\n    },\n    \"reccomendedBy\": \"The CEO\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url-chassis-two}}/api/employee",
+							"host": [
+								"{{base-url-chassis-two}}"
+							],
+							"path": [
+								"api",
+								"employee"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Employee",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"employee\": {\n        \"email\": \"john.doe@company.com\",\n        \"name\": \"John Doe\",\n        \"age\": 26\n    },\n    \"reccomendedBy\": \"The CEO\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url-chassis-two}}/api/employee?min=25&max=30",
+							"host": [
+								"{{base-url-chassis-two}}"
+							],
+							"path": [
+								"api",
+								"employee"
+							],
+							"query": [
+								{
+									"key": "min",
+									"value": "25"
+								},
+								{
+									"key": "max",
+									"value": "30"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Inter Service Communication",
+			"item": [
+				{
+					"name": "Approve Employee Termination (Async)",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"terminationDate\": \"2021-12-31T00:00:00\",\n    \"reason\": \"Test microservice pattern - inter service communication (async)\"\n}"
+						},
+						"url": {
+							"raw": "{{base-url-industrial-relation}}/api/termination_async/:employee_id",
+							"host": [
+								"{{base-url-industrial-relation}}"
+							],
+							"path": [
+								"api",
+								"termination_async",
+								":employee_id"
+							],
+							"variable": [
+								{
+									"key": "employee_id",
+									"value": "emp-9157",
+									"description": {
+										"content": "",
+										"type": "text/plain"
+									}
+								}
+							]
+						},
+						"description": "Approve employee termination"
+					},
+					"response": [
+						{
+							"name": "default response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"termination_date\": \"<date>\",\n    \"reason\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/termination/<string>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"termination",
+										"<string>"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"employee_id\": \"<string>\",\n \"message\": \"<string>\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Approve Employee Termination (Sync)",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"terminationDate\": \"2021-12-31T00:00:00\",\n    \"reason\": \"Test microservice pattern - inter service communication (sync)\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url-industrial-relation}}/api/termination/:employee_id",
+							"host": [
+								"{{base-url-industrial-relation}}"
+							],
+							"path": [
+								"api",
+								"termination",
+								":employee_id"
+							],
+							"variable": [
+								{
+									"key": "employee_id",
+									"value": "emp-9157",
+									"description": {
+										"content": "",
+										"type": "text/plain"
+									}
+								}
+							]
+						},
+						"description": "Approve employee termination"
+					},
+					"response": [
+						{
+							"name": "default response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"termination_date\": \"<date>\",\n    \"reason\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/termination/<string>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"termination",
+										"<string>"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"employee_id\": \"<string>\",\n \"message\": \"<string>\"\n}"
+						}
+					]
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "ab449a41-e531-40b2-932c-e8219653258d",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "94e19cf4-795f-4437-9323-47d9d80bf31b",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test('Check status code', () => {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204])",
+							"})"
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Service Discovery",
+			"item": [
+				{
+					"name": "Additional - Consul",
+					"item": [
+						{
+							"name": "Check - List",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "http://localhost:8500/v1/agent/checks",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8500",
+									"path": [
+										"v1",
+										"agent",
+										"checks"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Service - Deregister",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"ID\": \"xpayroll-compensation-01\",\n    \"Name\": \"xpayroll-compensation\",\n    \"Address\": \"192.168.0.9\",\n    \"Port\": 9082,\n    \"Check\": {\n        \"DeregisterCriticalServiceAfter\": \"90m\",\n        \"Args\": [\n            \"/payroll/health\"\n        ],\n        \"Interval\": \"10s\",\n        \"Timeout\": \"5s\"\n    },\n    \"Weights\": {\n        \"Passing\": 10,\n        \"Warning\": 1\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8500/v1/agent/service/deregister/:service_id",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8500",
+									"path": [
+										"v1",
+										"agent",
+										"service",
+										"deregister",
+										":service_id"
+									],
+									"variable": [
+										{
+											"key": "service_id",
+											"value": "payroll-compensation-9093"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Service - Get Health by Name",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"ID\": \"xpayroll-compensation-01\",\n    \"Name\": \"xpayroll-compensation\",\n    \"Address\": \"192.168.0.9\",\n    \"Port\": 9082,\n    \"Check\": {\n        \"DeregisterCriticalServiceAfter\": \"90m\",\n        \"Args\": [\n            \"/payroll/health\"\n        ],\n        \"Interval\": \"10s\",\n        \"Timeout\": \"5s\"\n    },\n    \"Weights\": {\n        \"Passing\": 10,\n        \"Warning\": 1\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8500/v1/agent/health/service/name/:service_name",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8500",
+									"path": [
+										"v1",
+										"agent",
+										"health",
+										"service",
+										"name",
+										":service_name"
+									],
+									"variable": [
+										{
+											"key": "service_name",
+											"value": "payroll-compensation"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Service - Register",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"ID\": \"payroll-compensation-8083\",\n    \"Name\": \"payroll-compensation\",\n    \"Address\": \"localhost\",\n    \"Port\": 8083,\n    \"Check\": {\n        \"DeregisterCriticalServiceAfter\": \"90m\",\n        \"HTTP\" : \"http://localhost:8083/payroll/ping\",\n        \"Interval\": \"10s\",\n        \"Timeout\": \"5s\"\n    },\n    \"Weights\": {\n        \"Passing\": 10,\n        \"Warning\": 1\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8500/v1/agent/service/register",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8500",
+									"path": [
+										"v1",
+										"agent",
+										"service",
+										"register"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Service - List",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"ID\": \"xpayroll-compensation-01\",\n    \"Name\": \"xpayroll-compensation\",\n    \"Address\": \"192.168.0.9\",\n    \"Port\": 9082,\n    \"Check\": {\n        \"DeregisterCriticalServiceAfter\": \"90m\",\n        \"Args\": [\n            \"/payroll/health\"\n        ],\n        \"Interval\": \"10s\",\n        \"Timeout\": \"5s\"\n    },\n    \"Weights\": {\n        \"Passing\": 10,\n        \"Warning\": 1\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:8500/v1/agent/services",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "8500",
+									"path": [
+										"v1",
+										"agent",
+										"services"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"event": [
+						{
+							"listen": "prerequest",
+							"script": {
+								"id": "45a8fbec-8416-4334-8cf7-24a3d21549f0",
+								"type": "text/javascript",
+								"exec": [
+									""
+								]
+							}
+						},
+						{
+							"listen": "test",
+							"script": {
+								"id": "fe60f789-e7d0-4d85-9809-6d00628318df",
+								"type": "text/javascript",
+								"exec": [
+									"pm.test('Check status code', () => {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204])",
+									"})"
+								]
+							}
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Approve Unpaid Leave (Sync)",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"unpaidLeaveDate\": \"2021-12-31T00:00:00\",\n    \"reason\": \"Test microservice pattern - service discovery\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url-employee-movement}}/api/unpaid_leave/:employee_id",
+							"host": [
+								"{{base-url-employee-movement}}"
+							],
+							"path": [
+								"api",
+								"unpaid_leave",
+								":employee_id"
+							],
+							"variable": [
+								{
+									"key": "employee_id",
+									"value": "emp-7101",
+									"description": {
+										"content": "",
+										"type": "text/plain"
+									}
+								}
+							]
+						},
+						"description": "Approve employee termination"
+					},
+					"response": [
+						{
+							"name": "default response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"termination_date\": \"<date>\",\n    \"reason\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/termination/<string>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"termination",
+										"<string>"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"employee_id\": \"<string>\",\n \"message\": \"<string>\"\n}"
+						}
+					]
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "ed37465e-aff0-436f-85e6-589f93608ced",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "0b419ba5-1ca5-4c1c-804b-8555a03aecd6",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test('Check status code', () => {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204])",
+							"})"
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Error Handling",
+			"item": [
+				{
+					"name": "Approve Employee Termination (Async) - Dead Letter",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"terminationDate\": \"2021-12-31T00:00:00\",\n    \"reason\": \"Test microservice pattern - inter service communication (async)\"\n}"
+						},
+						"url": {
+							"raw": "{{base-url-industrial-relation}}/api/termination_async/:employee_id",
+							"host": [
+								"{{base-url-industrial-relation}}"
+							],
+							"path": [
+								"api",
+								"termination_async",
+								":employee_id"
+							],
+							"variable": [
+								{
+									"key": "employee_id",
+									"value": "emp-0000",
+									"description": {
+										"content": "",
+										"type": "text/plain"
+									}
+								}
+							]
+						},
+						"description": "Approve employee termination"
+					},
+					"response": [
+						{
+							"name": "default response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"termination_date\": \"<date>\",\n    \"reason\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/termination/<string>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"termination",
+										"<string>"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"employee_id\": \"<string>\",\n \"message\": \"<string>\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Approve Employee Termination (Sync) - Circuit Breaker",
+					"request": {
+						"auth": {
+							"type": "noauth"
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"terminationDate\": \"2021-12-31T00:00:00\",\n    \"reason\": \"Test microservice pattern - inter service communication (sync)\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url-industrial-relation}}/api/termination/:employee_id",
+							"host": [
+								"{{base-url-industrial-relation}}"
+							],
+							"path": [
+								"api",
+								"termination",
+								":employee_id"
+							],
+							"variable": [
+								{
+									"key": "employee_id",
+									"value": "emp-2899",
+									"description": {
+										"content": "",
+										"type": "text/plain"
+									}
+								}
+							]
+						},
+						"description": "Approve employee termination"
+					},
+					"response": [
+						{
+							"name": "default response",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"termination_date\": \"<date>\",\n    \"reason\": \"<string>\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/api/termination/<string>",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"api",
+										"termination",
+										"<string>"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"employee_id\": \"<string>\",\n \"message\": \"<string>\"\n}"
+						}
+					]
+				},
+				{
+					"name": "Promote Employee",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url-employee-movement}}/api/promotion/:employee_id",
+							"host": [
+								"{{base-url-employee-movement}}"
+							],
+							"path": [
+								"api",
+								"promotion",
+								":employee_id"
+							],
+							"variable": [
+								{
+									"key": "employee_id",
+									"value": "emp-5209"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Happy Birthday",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url-organization-development}}/api/birthday/:employee_id",
+							"host": [
+								"{{base-url-organization-development}}"
+							],
+							"path": [
+								"api",
+								"birthday",
+								":employee_id"
+							],
+							"variable": [
+								{
+									"key": "employee_id",
+									"value": "emp-{{$randomInt}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Happy Wedding",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url-organization-development}}/api/wedding/:employee_id",
+							"host": [
+								"{{base-url-organization-development}}"
+							],
+							"path": [
+								"api",
+								"wedding",
+								":employee_id"
+							],
+							"variable": [
+								{
+									"key": "employee_id",
+									"value": "emp-{{$randomInt}}"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "f0d649e0-551b-4f47-9976-f3cd60d001ce",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "ede745d3-6893-4407-983b-f83c3954ae13",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test('Check status code', () => {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204])",
+							"})"
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Database Log Tailing",
+			"item": [
+				{
+					"name": "Debezium 01 - Check Connection",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url-kafka-connect}}",
+							"host": [
+								"{{base-url-kafka-connect}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Debezium 02 - Create Connector",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"employee-movement-connector\",\n    \"config\": {\n        \"connector.class\": \"io.debezium.connector.mysql.MySqlConnector\",\n        \"tasks.max\": \"1\",\n        \"database.allowPublicKeyRetrieval\": \"true\",\n        \"database.hostname\": \"mysql\",\n        \"database.port\": \"3306\",\n        \"database.user\": \"user\",\n        \"database.password\": \"userpassword\",\n        \"database.server.id\": \"9988\",\n        \"database.server.name\": \"t.dbserver01\",\n        \"database.history.kafka.bootstrap.servers\": \"kafka:29092\",\n        \"database.history.kafka.topic\": \"t.dbhistory\",\n        \"include.schema.changes\" : true\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url-kafka-connect}}/connectors",
+							"host": [
+								"{{base-url-kafka-connect}}"
+							],
+							"path": [
+								"connectors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Debezium 03 - List Existing Connector",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base-url-kafka-connect}}/connectors",
+							"host": [
+								"{{base-url-kafka-connect}}"
+							],
+							"path": [
+								"connectors"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Debezium 04 - Check Connector",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{base-url-kafka-connect}}/connectors/employee-movement-connector",
+							"host": [
+								"{{base-url-kafka-connect}}"
+							],
+							"path": [
+								"connectors",
+								"employee-movement-connector"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assignment - Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"employeeId\" : \"emp-2657\",\n\t\"dateStart\" : \"2021-01-01\",\n\t\"dateEnd\" : \"2099-12-31\",\n\t\"position\" : \"Senior Software Engineer\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url-employee-movement}}/api/assignment",
+							"host": [
+								"{{base-url-employee-movement}}"
+							],
+							"path": [
+								"api",
+								"assignment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assignment - List",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url-employee-movement}}/api/assignment",
+							"host": [
+								"{{base-url-employee-movement}}"
+							],
+							"path": [
+								"api",
+								"assignment"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assignment - Query By ID",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url-employee-movement}}/api/assignment/:assignment_id",
+							"host": [
+								"{{base-url-employee-movement}}"
+							],
+							"path": [
+								"api",
+								"assignment",
+								":assignment_id"
+							],
+							"variable": [
+								{
+									"key": "assignment_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assignment - Update",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"position\" : \"Engineering Manager\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url-employee-movement}}/api/assignment/:assignment_id",
+							"host": [
+								"{{base-url-employee-movement}}"
+							],
+							"path": [
+								"api",
+								"assignment",
+								":assignment_id"
+							],
+							"variable": [
+								{
+									"key": "assignment_id",
+									"value": "1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Assignment - Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{base-url-employee-movement}}/api/assignment/:assignment_id",
+							"host": [
+								"{{base-url-employee-movement}}"
+							],
+							"path": [
+								"api",
+								"assignment",
+								":assignment_id"
+							],
+							"variable": [
+								{
+									"key": "assignment_id",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "e14ed083-ea84-4f0a-b2c0-5587094de7bd",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "76e5a9cb-1b86-4f0c-aefc-d2cb1a580d41",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test('Check status code', () => {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204])",
+							"})"
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Polling Publisher",
+			"item": [
+				{
+					"name": "Polling Assignment - Create",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"employeeId\" : \"emp-{{$randomInt}}\",\n\t\"dateStart\" : \"2021-02-01\",\n\t\"dateEnd\" : \"2099-12-31\",\n\t\"position\" : \"{{$randomDepartment}} {{$randomJobTitle}}\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url-employee-movement}}/api/assignment/polling",
+							"host": [
+								"{{base-url-employee-movement}}"
+							],
+							"path": [
+								"api",
+								"assignment",
+								"polling"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Polling Assignment - Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n\t\"employeeId\" : \"emp-4988\",\n\t\"dateStart\" : \"2021-02-01\",\n\t\"dateEnd\" : \"2099-12-31\",\n\t\"position\" : \"Senior Front-End Engineer\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url-employee-movement}}/api/assignment/polling/:assignment_id",
+							"host": [
+								"{{base-url-employee-movement}}"
+							],
+							"path": [
+								"api",
+								"assignment",
+								"polling",
+								":assignment_id"
+							],
+							"variable": [
+								{
+									"key": "assignment_id",
+									"value": "3"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Saga",
+			"item": [
+				{
+					"name": "Coreography",
+					"item": [
+						{
+							"name": "01 - Create Appraisal",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"employeeId\" : \"emp-8926\",\n\t\"grade\" : \"VERY_GOOD\",\n\t\"score\" : 98,\n\t\"status\" : \"NEW\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base-url-performance-management}}/api/appraisal",
+									"host": [
+										"{{base-url-performance-management}}"
+									],
+									"path": [
+										"api",
+										"appraisal"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "02 - Query Appraisal By ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base-url-performance-management}}/api/appraisal/:appraisal_id",
+									"host": [
+										"{{base-url-performance-management}}"
+									],
+									"path": [
+										"api",
+										"appraisal",
+										":appraisal_id"
+									],
+									"variable": [
+										{
+											"key": "appraisal_id",
+											"value": "0f7bb045-775c-407e-8bfb-fd299efd7454"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "03 - Approve Appraisal",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{base-url-performance-management}}/api/saga/choreography/appraisal/approval/:appraisal_id",
+									"host": [
+										"{{base-url-performance-management}}"
+									],
+									"path": [
+										"api",
+										"saga",
+										"choreography",
+										"appraisal",
+										"approval",
+										":appraisal_id"
+									],
+									"variable": [
+										{
+											"key": "appraisal_id",
+											"value": "0f7bb045-775c-407e-8bfb-fd299efd7454"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Coreography & Compensation",
+					"item": [
+						{
+							"name": "01 - Create Appraisal",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"employeeId\" : \"emp-5809\",\n\t\"grade\" : \"GOOD\",\n\t\"score\" : 82,\n\t\"status\" : \"NEW\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base-url-performance-management}}/api/appraisal",
+									"host": [
+										"{{base-url-performance-management}}"
+									],
+									"path": [
+										"api",
+										"appraisal"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "02 - Query Appraisal By ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base-url-performance-management}}/api/appraisal/:appraisal_id",
+									"host": [
+										"{{base-url-performance-management}}"
+									],
+									"path": [
+										"api",
+										"appraisal",
+										":appraisal_id"
+									],
+									"variable": [
+										{
+											"key": "appraisal_id",
+											"value": "036c6ce5-f219-4c80-a32f-385b542920e4"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "03 - Approve Appraisal",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{base-url-performance-management}}/api/saga/choreography/appraisal/approval_compensation/:appraisal_id",
+									"host": [
+										"{{base-url-performance-management}}"
+									],
+									"path": [
+										"api",
+										"saga",
+										"choreography",
+										"appraisal",
+										"approval_compensation",
+										":appraisal_id"
+									],
+									"variable": [
+										{
+											"key": "appraisal_id",
+											"value": "80ec0aa9-2f52-4c76-a411-d41dba31dd1f"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Orchestration",
+					"item": [
+						{
+							"name": "01 - Create Appraisal",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"employeeId\" : \"emp-2051\",\n\t\"grade\" : \"VERY_GOOD\",\n\t\"score\" : 96,\n\t\"status\" : \"NEW\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base-url-performance-management}}/api/appraisal",
+									"host": [
+										"{{base-url-performance-management}}"
+									],
+									"path": [
+										"api",
+										"appraisal"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "02 - Query Appraisal By ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base-url-performance-management}}/api/appraisal/:appraisal_id",
+									"host": [
+										"{{base-url-performance-management}}"
+									],
+									"path": [
+										"api",
+										"appraisal",
+										":appraisal_id"
+									],
+									"variable": [
+										{
+											"key": "appraisal_id",
+											"value": "55aa3c61-6b37-4b37-8df8-f36c80cec51d"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "03 - Approve Appraisal",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{base-url-performance-management}}/api/saga/orchestration/appraisal/approval/:appraisal_id",
+									"host": [
+										"{{base-url-performance-management}}"
+									],
+									"path": [
+										"api",
+										"saga",
+										"orchestration",
+										"appraisal",
+										"approval",
+										":appraisal_id"
+									],
+									"variable": [
+										{
+											"key": "appraisal_id",
+											"value": "55aa3c61-6b37-4b37-8df8-f36c80cec51d"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Orchestration & Compensation",
+					"item": [
+						{
+							"name": "01 - Create Appraisal",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n\t\"employeeId\" : \"emp-3392\",\n\t\"grade\" : \"GOOD\",\n\t\"score\" : 84,\n\t\"status\" : \"NEW\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base-url-performance-management}}/api/appraisal",
+									"host": [
+										"{{base-url-performance-management}}"
+									],
+									"path": [
+										"api",
+										"appraisal"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "02 - Query Appraisal By ID",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base-url-performance-management}}/api/appraisal/:appraisal_id",
+									"host": [
+										"{{base-url-performance-management}}"
+									],
+									"path": [
+										"api",
+										"appraisal",
+										":appraisal_id"
+									],
+									"variable": [
+										{
+											"key": "appraisal_id",
+											"value": "e0d72646-ad97-4873-b1ad-6d6a913313f3"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "03 - Approve Appraisal",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{base-url-performance-management}}/api/saga/orchestration/appraisal/approval_compensation/:appraisal_id",
+									"host": [
+										"{{base-url-performance-management}}"
+									],
+									"path": [
+										"api",
+										"saga",
+										"orchestration",
+										"appraisal",
+										"approval_compensation",
+										":appraisal_id"
+									],
+									"variable": [
+										{
+											"key": "appraisal_id",
+											"value": "e0d72646-ad97-4873-b1ad-6d6a913313f3"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "46dc0c7c-a8bd-4f28-8bd7-f2ccf329f795",
+						"type": "text/javascript",
+						"exec": [
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "a08a0279-9224-4aa0-8144-f091227b03c1",
+						"type": "text/javascript",
+						"exec": [
+							"pm.test('Check status code', () => {",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201, 204])",
+							"})"
+						]
+					}
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "CQRS",
+			"item": [
+				{
+					"name": "Debezium",
+					"item": [
+						{
+							"name": "Create Connector (Performance Management)",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"cqrs01-performancemanagement-connector\",\n    \"config\": {\n        \"connector.class\": \"io.debezium.connector.mysql.MySqlConnector\",\n        \"tasks.max\": \"1\",\n        \"database.allowPublicKeyRetrieval\": \"true\",\n        \"database.hostname\": \"mysql\",\n        \"database.port\": \"3306\",\n        \"database.user\": \"user\",\n        \"database.password\": \"userpassword\",\n        \"database.server.id\": \"9988\",\n        \"database.server.name\": \"t.cqrs01.debezium.performancemanagement\",\n        \"database.history.kafka.bootstrap.servers\": \"kafka:29092\",\n        \"database.history.kafka.topic\": \"t.dbhistory\",\n        \"include.schema.changes\": true,\n        \"database.whitelist\": \"performance_management\",\n        \"table.whitelist\": \"performance_management.cqrs_outbox\",\n        \"transforms\": \"outbox\",\n        \"transforms.outbox.type\": \"io.debezium.transforms.outbox.EventRouter\",\n        \"transforms.outbox.route.topic.replacement\" : \"t.cqrs01.performancemanagement.outbox.${routedByValue}\",\n        \"transforms.outbox.table.field.event.id\": \"id\",\n        \"transforms.outbox.table.field.event.key\": \"aggregate_id\",\n        \"transforms.outbox.table.field.event.type\": \"transaction_type\",\n        \"transforms.outbox.table.field.event.timestamp\": \"created_timestamp\",\n        \"transforms.outbox.table.field.event.payload\": \"payload\",\n        \"transforms.outbox.table.field.event.payload.id\": \"aggregate_id\",\n        \"transforms.outbox.route.by.field\" : \"aggregate_type\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base-url-kafka-connect}}/connectors",
+									"host": [
+										"{{base-url-kafka-connect}}"
+									],
+									"path": [
+										"connectors"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Create Connector (Payroll Compensation)",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"cqrs01-payrollcompensation-connector\",\n    \"config\": {\n        \"connector.class\": \"io.debezium.connector.mysql.MySqlConnector\",\n        \"tasks.max\": \"1\",\n        \"database.allowPublicKeyRetrieval\": \"true\",\n        \"database.hostname\": \"mysql\",\n        \"database.port\": \"3306\",\n        \"database.user\": \"user\",\n        \"database.password\": \"userpassword\",\n        \"database.server.id\": \"1122\",\n        \"database.server.name\": \"t.cqrs01.debezium.payrollcompensation\",\n        \"database.history.kafka.bootstrap.servers\": \"kafka:29092\",\n        \"database.history.kafka.topic\": \"t.dbhistory\",\n        \"include.schema.changes\": true,\n        \"database.whitelist\": \"payroll_compensation\",\n        \"table.whitelist\": \"payroll_compensation.cqrs_outbox\",\n        \"transforms\": \"outbox\",\n        \"transforms.outbox.type\": \"io.debezium.transforms.outbox.EventRouter\",\n        \"transforms.outbox.route.topic.replacement\" : \"t.cqrs01.payrollcompensation.outbox.${routedByValue}\",\n        \"transforms.outbox.table.field.event.id\": \"id\",\n        \"transforms.outbox.table.field.event.key\": \"aggregate_id\",\n        \"transforms.outbox.table.field.event.type\": \"transaction_type\",\n        \"transforms.outbox.table.field.event.timestamp\": \"created_timestamp\",\n        \"transforms.outbox.table.field.event.payload\": \"payload\",\n        \"transforms.outbox.table.field.event.payload.id\": \"aggregate_id\",\n        \"transforms.outbox.route.by.field\" : \"aggregate_type\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base-url-kafka-connect}}/connectors",
+									"host": [
+										"{{base-url-kafka-connect}}"
+									],
+									"path": [
+										"connectors"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "List Existing Connector",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"url": {
+									"raw": "{{base-url-kafka-connect}}/connectors",
+									"host": [
+										"{{base-url-kafka-connect}}"
+									],
+									"path": [
+										"connectors"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "CQRS 01 - Create Appraisal",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"employeeId\": \"emp-{{$randomInt}}\",\n    \"grade\": \"VERY_GOOD\",\n    \"score\": 99\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url-performance-management}}/api/cqrs/appraisal",
+							"host": [
+								"{{base-url-performance-management}}"
+							],
+							"path": [
+								"api",
+								"cqrs",
+								"appraisal"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CQRS 02 - Approve Appraisal",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"url": {
+							"raw": "{{base-url-performance-management}}/api/cqrs/appraisal/approval/:appraisal_id",
+							"host": [
+								"{{base-url-performance-management}}"
+							],
+							"path": [
+								"api",
+								"cqrs",
+								"appraisal",
+								"approval",
+								":appraisal_id"
+							],
+							"variable": [
+								{
+									"key": "appraisal_id",
+									"value": "0f7bb045-775c-407e-8bfb-fd299efd7454"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "CQRS - Get Performance History",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"type": "text",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"employeeId\": \"emp-1598\",\n    \"grade\": \"VERY_GOOD\",\n    \"score\": 99\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base-url-performance-management}}/api/performance_history/:appraisal_id",
+							"host": [
+								"{{base-url-performance-management}}"
+							],
+							"path": [
+								"api",
+								"performance_history",
+								":appraisal_id"
+							],
+							"variable": [
+								{
+									"key": "appraisal_id",
+									"value": ""
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "API Gateway",
+			"item": [
+				{
+					"name": "Dummy Data",
+					"item": [
+						{
+							"name": "01 - Create Appraisal",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"employeeId\": \"emp-{{$randomInt}}}}\",\n    \"grade\": \"VERY_GOOD\",\n    \"score\": 94,\n    \"status\" : \"NEW\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base-url-performance-management}}/api/cqrs/appraisal",
+									"host": [
+										"{{base-url-performance-management}}"
+									],
+									"path": [
+										"api",
+										"cqrs",
+										"appraisal"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "02 - Approve Appraisal",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"url": {
+									"raw": "{{base-url-performance-management}}/api/cqrs/appraisal/approval/:appraisal_id",
+									"host": [
+										"{{base-url-performance-management}}"
+									],
+									"path": [
+										"api",
+										"cqrs",
+										"appraisal",
+										"approval",
+										":appraisal_id"
+									],
+									"variable": [
+										{
+											"key": "appraisal_id",
+											"value": "30b1ddb6-566d-4758-b4d0-d4d149ea61e6"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Spring Cloud Gateway",
+					"item": [
+						{
+							"name": "Get All Performance History (Non Blocking)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base-url-api-gateway-spring}}/api/composition/performance_history",
+									"host": [
+										"{{base-url-api-gateway-spring}}"
+									],
+									"path": [
+										"api",
+										"composition",
+										"performance_history"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Echo - Employee Movement",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base-url-api-gateway-spring}}/em/echo",
+									"host": [
+										"{{base-url-api-gateway-spring}}"
+									],
+									"path": [
+										"em",
+										"echo"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Echo - Industrial Relation",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base-url-api-gateway-spring}}/ir/echo",
+									"host": [
+										"{{base-url-api-gateway-spring}}"
+									],
+									"path": [
+										"ir",
+										"echo"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Kong API Management",
+					"item": [
+						{
+							"name": "Echo - Organization Development",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base-url-api-gateway-kong}}/od/echo",
+									"host": [
+										"{{base-url-api-gateway-kong}}"
+									],
+									"path": [
+										"od",
+										"echo"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Echo - Payroll Compensation",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base-url-api-gateway-kong}}/pc/echo",
+									"host": [
+										"{{base-url-api-gateway-kong}}"
+									],
+									"path": [
+										"pc",
+										"echo"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Get All Performance History",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base-url-api-gateway-kong}}/composition/api/composition/performance_history",
+									"host": [
+										"{{base-url-api-gateway-kong}}"
+									],
+									"path": [
+										"composition",
+										"api",
+										"composition",
+										"performance_history"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "API Composition",
+					"item": [
+						{
+							"name": "Get All Performance History (Blocking)",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base-url-api-composition}}/api/composition/performance_history",
+									"host": [
+										"{{base-url-api-composition}}"
+									],
+									"path": [
+										"api",
+										"composition",
+										"performance_history"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Service Configuration",
+			"item": [
+				{
+					"name": "Vault - Secret",
+					"item": [
+						{
+							"name": "01. Vault - Create Secret",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "X-Vault-Token",
+										"type": "text",
+										"value": "s.UDLbc8yvzrZg7d9sVs3Fq7Ql"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"data\": {\n        \"myvault.data.one\": \"Vault First Data\",\n        \"myvault.data.two\": \"Vault Second Data\",\n        \"myvault.sample.username\": \"Vault Username\",\n        \"myvault.sample.password\": \"Vault Password\"\n    }\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base-url-vault}}/v1/secret/data/:path",
+									"host": [
+										"{{base-url-vault}}"
+									],
+									"path": [
+										"v1",
+										"secret",
+										"data",
+										":path"
+									],
+									"variable": [
+										{
+											"key": "path",
+											"value": "microservice-chassis-three"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "02. Vault - Read Secret",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-Vault-Token",
+										"value": "s.U7xQhwWdMDV2OJRQ3YIY19Yu",
+										"type": "text"
+									},
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"max_versions\": 5,\r\n  \"cas_required\": false,\r\n  \"delete_version_after\": \"3h25m19s\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base-url-vault}}/v1/secret/data/:path",
+									"host": [
+										"{{base-url-vault}}"
+									],
+									"path": [
+										"v1",
+										"secret",
+										"data",
+										":path"
+									],
+									"variable": [
+										{
+											"key": "path",
+											"value": "microservice-chassis-three"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Vault - Database",
+					"item": [
+						{
+							"name": "01. Vault - Create Database Connection",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "X-Vault-Token",
+										"type": "text",
+										"value": "s.Jw9KdXiN8ny51iuWgNYuEL1E"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"plugin_name\": \"mysql-database-plugin\",\r\n  \"allowed_roles\": \"my-role\",\r\n  \"connection_url\" : \"{{username}}:{{password}}@tcp(127.0.0.1:3306)/ms_chassis_three\",\r\n  \"username\": \"root\",\r\n  \"password\": \"rootpassword\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base-url-vault}}/v1/database/config/:name",
+									"host": [
+										"{{base-url-vault}}"
+									],
+									"path": [
+										"v1",
+										"database",
+										"config",
+										":name"
+									],
+									"variable": [
+										{
+											"key": "name",
+											"value": "my-database"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "02. Vault - Create Database Role",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "X-Vault-Token",
+										"type": "text",
+										"value": "s.Jw9KdXiN8ny51iuWgNYuEL1E"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"db_name\": \"my-database\",\n    \"creation_statements\": [\n        \"CREATE USER '{{name}}'@'%' IDENTIFIED BY '{{password}}'\",\n        \"GRANT ALL PRIVILEGES ON ms_chassis_three.* TO '{{name}}'@'%';\"\n    ],\n    \"default_ttl\": \"768h\",\n    \"max_ttl\": \"768h\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base-url-vault}}/v1/database/roles/:name",
+									"host": [
+										"{{base-url-vault}}"
+									],
+									"path": [
+										"v1",
+										"database",
+										"roles",
+										":name"
+									],
+									"variable": [
+										{
+											"key": "name",
+											"value": "my-role"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "03. Vault - Read Database Role",
+							"protocolProfileBehavior": {
+								"disableBodyPruning": true
+							},
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"type": "text",
+										"value": "application/json"
+									},
+									{
+										"key": "X-Vault-Token",
+										"type": "text",
+										"value": "s.Jw9KdXiN8ny51iuWgNYuEL1E"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"db_name\": \"my-database\",\n    \"creation_statements\": [\n        \"CREATE USER '{{name}}'@'%' IDENTIFIED BY '{{password}}'\",\n        \"GRANT SELECT ON *.* TO '{{name}}'@'%'\"\n    ],\n    \"default_ttl\": \"1h\",\n    \"max_ttl\": \"24h\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base-url-vault}}/v1/database/creds/:name",
+									"host": [
+										"{{base-url-vault}}"
+									],
+									"path": [
+										"v1",
+										"database",
+										"creds",
+										":name"
+									],
+									"variable": [
+										{
+											"key": "name",
+											"value": "my-role"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				},
+				{
+					"name": "Read From File Configuration",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url-chassis-three}}/api/config/file",
+							"host": [
+								"{{base-url-chassis-three}}"
+							],
+							"path": [
+								"api",
+								"config",
+								"file"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Read From Vault Configuration",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url-chassis-three}}/api/config/vault",
+							"host": [
+								"{{base-url-chassis-three}}"
+							],
+							"path": [
+								"api",
+								"config",
+								"vault"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Pagination",
+			"item": [
+				{
+					"name": "Create Dummy Data",
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"url": {
+							"raw": "{{base-url-performance-management}}/api/indicator?data_size=200",
+							"host": [
+								"{{base-url-performance-management}}"
+							],
+							"path": [
+								"api",
+								"indicator"
+							],
+							"query": [
+								{
+									"key": "data_size",
+									"value": "200"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pagination Dummy Data",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url-performance-management}}/api/indicator?page=0&size=10",
+							"host": [
+								"{{base-url-performance-management}}"
+							],
+							"path": [
+								"api",
+								"indicator"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pagination Spring Data REST",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url-performance-management}}/api/indicator_spring?page=0&size=10",
+							"host": [
+								"{{base-url-performance-management}}"
+							],
+							"path": [
+								"api",
+								"indicator_spring"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "0"
+								},
+								{
+									"key": "size",
+									"value": "10"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Axon",
+			"item": [
+				{
+					"name": "Event Sourcing",
+					"item": [
+						{
+							"name": "Fund - Create",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"fundInitialBalance\": 5000\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base-url-industrial-relation}}/api/event_sourcing/club_fund",
+									"host": [
+										"{{base-url-industrial-relation}}"
+									],
+									"path": [
+										"api",
+										"event_sourcing",
+										"club_fund"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Fund - Add",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"addAmount\": {{$randomInt}}\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base-url-industrial-relation}}/api/event_sourcing/club_fund/:club_id",
+									"host": [
+										"{{base-url-industrial-relation}}"
+									],
+									"path": [
+										"api",
+										"event_sourcing",
+										"club_fund",
+										":club_id"
+									],
+									"variable": [
+										{
+											"key": "club_id",
+											"value": "4d133a45-feae-4d78-a3f4-ad1c89edbd6e"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Fund - Deduct",
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Content-Type",
+										"name": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"deductAmount\": {{$randomInt}}\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base-url-industrial-relation}}/api/event_sourcing/club_fund/:club_id",
+									"host": [
+										"{{base-url-industrial-relation}}"
+									],
+									"path": [
+										"api",
+										"event_sourcing",
+										"club_fund",
+										":club_id"
+									],
+									"variable": [
+										{
+											"key": "club_id",
+											"value": "4d133a45-feae-4d78-a3f4-ad1c89edbd6e"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Fund - List All",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base-url-industrial-relation}}/api/event_sourcing/club_fund/:club_id",
+									"host": [
+										"{{base-url-industrial-relation}}"
+									],
+									"path": [
+										"api",
+										"event_sourcing",
+										"club_fund",
+										":club_id"
+									],
+									"variable": [
+										{
+											"key": "club_id",
+											"value": "4d133a45-feae-4d78-a3f4-ad1c89edbd6e"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Fund - Replay",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base-url-industrial-relation}}/api/event_sourcing/club_fund/balance/:club_id?date_time_to=2020-02-27T04:15:54",
+									"host": [
+										"{{base-url-industrial-relation}}"
+									],
+									"path": [
+										"api",
+										"event_sourcing",
+										"club_fund",
+										"balance",
+										":club_id"
+									],
+									"query": [
+										{
+											"key": "date_time_to",
+											"value": "2020-02-27T04:15:54"
+										}
+									],
+									"variable": [
+										{
+											"key": "club_id",
+											"value": "4d133a45-feae-4d78-a3f4-ad1c89edbd6e"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"protocolProfileBehavior": {},
+					"_postman_isSubFolder": true
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Cache",
+			"item": [
+				{
+					"name": "Slow Payroll API",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url-api-composition}}/api/payroll/slow?employee_id=emp-7777",
+							"host": [
+								"{{base-url-api-composition}}"
+							],
+							"path": [
+								"api",
+								"payroll",
+								"slow"
+							],
+							"query": [
+								{
+									"key": "employee_id",
+									"value": "emp-7777"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Prepare For Production",
+			"item": [
+				{
+					"name": "Health Check - Custom",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url-api-composition}}/ping",
+							"host": [
+								"{{base-url-api-composition}}"
+							],
+							"path": [
+								"ping"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Health Check - Actuator",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url-api-composition}}/actuator/health",
+							"host": [
+								"{{base-url-api-composition}}"
+							],
+							"path": [
+								"actuator",
+								"health"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actuator - Loggers",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url-api-composition}}/actuator/loggers",
+							"host": [
+								"{{base-url-api-composition}}"
+							],
+							"path": [
+								"actuator",
+								"loggers"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actuator - Mappings",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url-api-composition}}/actuator/mappings",
+							"host": [
+								"{{base-url-api-composition}}"
+							],
+							"path": [
+								"actuator",
+								"mappings"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get All Performance History",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url-api-composition}}/api/composition/performance_history",
+							"host": [
+								"{{base-url-api-composition}}"
+							],
+							"path": [
+								"api",
+								"composition",
+								"performance_history"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Slow Payroll API",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url-api-composition}}/api/payroll/slow?employee_id=emp-{{$randomInt}}",
+							"host": [
+								"{{base-url-api-composition}}"
+							],
+							"path": [
+								"api",
+								"payroll",
+								"slow"
+							],
+							"query": [
+								{
+									"key": "employee_id",
+									"value": "emp-{{$randomInt}}"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Random Status",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{base-url-api-composition}}/api/random/status",
+							"host": [
+								"{{base-url-api-composition}}"
+							],
+							"path": [
+								"api",
+								"random",
+								"status"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Random Exception",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{base-url-api-composition}}/api/random/exception",
+							"host": [
+								"{{base-url-api-composition}}"
+							],
+							"path": [
+								"api",
+								"random",
+								"exception"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "b9cac4ca-55a5-421e-b35f-0db8c87d6a26",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "e520212c-853e-4281-91d4-3982212d6987",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "655aeecb-ecbd-49a1-b9c9-b2354bfa4630",
+			"key": "base-url-chassis",
+			"value": "http://localhost:8004",
+			"type": "string"
+		},
+		{
+			"id": "591fcebb-8469-4176-b83c-61463c026346",
+			"key": "base-url-employee-movement",
+			"value": "http://localhost:8881",
+			"type": "string"
+		},
+		{
+			"id": "001b5341-1e14-4cf5-9b45-7814403c5e5d",
+			"key": "base-url-industrial-relation",
+			"value": "http://localhost:8882",
+			"type": "string"
+		},
+		{
+			"id": "dfe77cd8-2ae7-49d5-b1c5-adfc8990d430",
+			"key": "base-url-payroll-compensation",
+			"value": "http://localhost:8883",
+			"type": "string"
+		},
+		{
+			"id": "6d5fdfbb-be06-416b-81c5-32c7a3f65c79",
+			"key": "base-url-performance-management",
+			"value": "http://localhost:8884",
+			"type": "string"
+		},
+		{
+			"id": "ed295f5d-319a-48ad-baab-f1b5e435bdd7",
+			"key": "base-url-organization-development",
+			"value": "http://localhost:8885",
+			"type": "string"
+		},
+		{
+			"id": "5194e1e1-3831-4705-bc7f-f211efcfb92e",
+			"key": "base-url-chassis-two",
+			"value": "http://localhost:8886",
+			"type": "string"
+		},
+		{
+			"id": "f6c8f187-ca92-42f9-b090-bc4498de4d78",
+			"key": "base-url-kafka-connect",
+			"value": "http://localhost:8083",
+			"type": "string"
+		},
+		{
+			"id": "04bb9e10-6476-471b-933f-5111ee66ec20",
+			"key": "base-url-api-gateway-spring",
+			"value": "http://localhost:9991",
+			"type": "string"
+		},
+		{
+			"id": "6780fd4e-7e7b-4b7b-8d1d-55101c1d4756",
+			"key": "base-url-api-composition",
+			"value": "http://localhost:9992",
+			"type": "string"
+		},
+		{
+			"id": "c08983df-d396-4036-bf55-0615f4fc88ee",
+			"key": "base-url-api-gateway-kong",
+			"value": "http://localhost:8000",
+			"type": "string"
+		},
+		{
+			"id": "7a0a3e96-78ee-4dcf-b27e-427304e17af5",
+			"key": "base-url-vault",
+			"value": "http://localhost:8200",
+			"type": "string"
+		},
+		{
+			"id": "94cec024-c0be-4f18-85b1-cf8215781d7e",
+			"key": "base-url-chassis-three",
+			"value": "http://localhost:8887",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}

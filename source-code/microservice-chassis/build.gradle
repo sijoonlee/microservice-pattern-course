@@ -1,0 +1,66 @@
+plugins {
+	id 'org.springframework.boot' version '2.2.5.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.9.RELEASE'
+	id 'java'
+}
+
+group = 'com.course.microservice'
+version = '1.0.0'
+sourceCompatibility = '13'
+
+configurations {
+	developmentOnly
+	runtimeClasspath {
+		extendsFrom developmentOnly
+	}
+}
+
+sourceSets {
+    main {
+        java {
+            srcDirs 'conf'
+  		}
+  	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+ext {
+	set('commonsLangVersion', "3.9")
+	set('commonsValidatorVersion', "1.6")
+	set('commonsIoVersion', "2.6")
+	set('springCloudVersion', "Hoxton.SR1")
+	set('springdocVersion', "1.2.31")
+}
+
+dependencies {
+	// spring boot library
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.cloud:spring-cloud-starter-openfeign'	
+
+	// apache commons library
+	implementation "commons-validator:commons-validator:${commonsValidatorVersion}"	
+	implementation "org.apache.commons:commons-lang3:${commonsLangVersion}"
+	implementation "commons-io:commons-io:${commonsIoVersion}"
+
+	// springdoc
+	implementation "org.springdoc:springdoc-openapi-ui:${springdocVersion}"	
+
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}
+
+test {
+	useJUnitPlatform()
+}

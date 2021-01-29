@@ -1,0 +1,26 @@
+logging:
+  pattern:
+    console: "[API Gateway] %clr(%d{HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:%5p}) %clr(---){faint} %clr(%-40.40logger{39}){cyan} %clr(:){faint} %m%n${LOG_EXCEPTION_CONVERSION_WORD:%wEx}"
+  
+server:
+  port: 9991
+  
+spring:
+  main:
+    banner-mode: OFF
+  devtools:
+    restart:
+      additional-paths:
+      - conf/**
+  cloud:
+    loadbalancer:
+      ribbon:
+        enabled: false
+    consul:
+      discovery:
+        prefer-ip-address: true
+        health-check-path: /ping
+
+feign:
+  hystrix:
+    enabled: false

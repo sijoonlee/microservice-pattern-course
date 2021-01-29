@@ -1,0 +1,14 @@
+logging:
+  pattern:
+    dateformat: "HH:mm:ss.SSS"
+  file:
+    name: log/microservice-chassis.log
+  
+spring:
+  main:    banner-mode: OFF
+  devtools:
+    restart:
+      additional-paths:
+      - conf/**
+        
+server:  port: 8004

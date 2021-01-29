@@ -1,0 +1,17 @@
+version: "3.7"
+
+networks:
+  microservice-net:
+    name: microservice-net
+    driver: bridge
+
+services:
+  axon:
+    image: axoniq/axonserver:4.3
+    container_name: axon
+    restart: unless-stopped
+    networks:
+      - microservice-net
+    ports:
+      - "8024:8024"
+      - "8124:8124"
